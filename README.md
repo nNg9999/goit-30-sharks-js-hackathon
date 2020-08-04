@@ -1,1 +1,1 @@
-# gulp-sharks-js-hackathon
+# goit-30-sharks-js-hackathon
