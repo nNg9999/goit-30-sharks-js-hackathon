@@ -9,7 +9,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-
   "homepage": "https://nNg9999.github.io/goit-30-sharks-js-hackathon",
   "repository": {
     "type": "git",
@@ -49,5 +48,8 @@
     "gulp-uglify": "^3.0.2",
     "require-dir": "^1.2.0",
     "usedcss": "^1.0.7"
+  },
+  "dependencies": {
+    "gulp-routes": "^1.0.0"
   }
 }
