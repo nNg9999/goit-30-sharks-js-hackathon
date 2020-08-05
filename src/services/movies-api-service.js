@@ -28,14 +28,14 @@ const fetchShowReviews = showId => {
     .then(res => res.results);
 };
 
-const fetchShowWithQuery = searchQuery => {
-  return fetch(`${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=1&include_adult=false`)
+const fetchShowWithQuery = (searchQuery, pageNumber) => {
+  return fetch(`${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=${pageNumber}&include_adult=false`)
     .then(res => res.json())
     .then(data => data.results)
 };
 
-const fetchShowWithTrending = () => {
-  return fetch(`${baseURL}/trending/all/day?api_key=${apiKey}&language=en-US&page=1&include_adult=false`)
+const fetchShowWithTrending = (pageNumber) => {
+  return fetch(`${baseURL}/trending/all/day?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false`)
     .then(res => res.json())
     .then(res => res.results)
 }

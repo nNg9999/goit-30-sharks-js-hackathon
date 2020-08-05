@@ -19,7 +19,7 @@ function init() {
       DetailsPage(root);
       break;
     }
-    case '/MyFilmLibraryPage': {
+    case '/myFilmLibraryPage': {
       MyFilmLibraryPage(root);
       break;
     }
