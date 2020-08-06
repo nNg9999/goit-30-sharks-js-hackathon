@@ -1,6 +1,6 @@
 const baseURL = 'https://api.themoviedb.org/3';
 const apiKey = '338897da6433601e8c5026c6fd0b5ca7';
-const pathImage = "https://image.tmdb.org/t/p";
+const pathImage = "https://image.tmdb.org/t/p/w500";
 const noPoster =
   "https://moviereelist.com/wp-content/uploads/2019/07/poster-placeholder.jpg";
 const noImage =
@@ -9,10 +9,9 @@ const noImage =
 
 const fetchShowDetails = showId => {
 
-  return fetch(`${baseURL}/movie/${showId}?api_key=${apiKey}`)
+  return fetch(`${baseURL}/movie/${showId}?api_key=${apiKey}&language=ru`)
     .then(res => res.json());
 };
-
 
 const fetchShowCast = showId => {
 

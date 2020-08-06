@@ -1,21 +1,37 @@
 import newfetchShowDetails from '../../services/movies-api-service';
 
-// console.log(newfetchShowDetails);
-
 import myFilmLibraryPageTemplate from './myFilmLibraryPage.hbs';
 import filmLibraryItemsTemplate from './filmLibraryItems.hbs';
 import debounce from 'lodash.debounce';
 
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
-
 import notify from '../../utils/notify';
 import spinner from '../../utils/spinner';
 
-
-
 export default function (root, ...rest) {
   // Создаем всю разметку 
+
+  // const markup = myFilmLibraryPageTemplate();
+  // root.insertAdjacentHTML('beforeend', markup);
+
+  function createLibraryCard(imgPath, filmTitle, movieId, voteAverage) {
+
+    const markup = filmLibraryItems();
+
+    return root.insertAdjacentHTML('beforeend', markup);
+  }
+
+  // createLibraryCard();
+
+
+  function drawQueueFilmList(params) {
+
+  }
+
+  function drawWatchedFilmList(params) {
+
+  }
+
+
   const markup = myFilmLibraryPageTemplate();
   root.insertAdjacentHTML('beforeend', markup);
 

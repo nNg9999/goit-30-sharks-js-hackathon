@@ -1,5 +1,6 @@
 import { defaults, info, error } from '@pnotify/core';
 import '@pnotify/core/dist/BrightTheme.css';
+defaults.addClass = 'center';
 defaults.delay = 2000;
 defaults.closer = false;
 defaults.sticker = false;
