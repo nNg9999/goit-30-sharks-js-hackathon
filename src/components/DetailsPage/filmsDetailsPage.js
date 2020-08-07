@@ -34,14 +34,14 @@ export default function (root, ...rest) {
   function monitorButtonStatusText(id) {
     const filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
     const filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
-    if (filmsQueue.length > 0) {
+    if (filmsQueue) {
       filmsQueue.forEach(el => {
         if (el.id === id) {
           changeButtonQueue();
         }
       });
     }
-    if (filmsWatched.length > 0) {
+    if (filmsWatched) {
       filmsWatched.forEach(el => {
         if (el.id === id) {
           changeButtonWatched();
@@ -64,8 +64,13 @@ export default function (root, ...rest) {
       .then(data => {
         renderDetails(dataWithCutDate(data));
         monitorButtonStatusText(id);
+        document
+          .getElementById('watch')
+          .addEventListener('click', () => watchChange(data));
+        document
+          .getElementById('queue')
+          .addEventListener('click', () => queueChange(data));
       })
-      .then((watchButton = document.getElementById('watch')))
       .catch(notify.showError('ERROR!'));
   }
 
@@ -76,13 +81,63 @@ export default function (root, ...rest) {
     root.insertAdjacentHTML('beforeend', markup);
   }
 
-  fetchDetails(id);
-
-  watch.addEventListener('click', () => {
-    watchButton.style.cursor = 'pointer';
-    console.log(watchButton);
+  function watchChange(film) {
+    const ref = document.getElementById('watch');
+    let filmToWatch = JSON.parse(localStorage.getItem('filmsWatched'));
+    // Убрать этот костыль
+    if (filmToWatch === null) {
+      filmToWatch = [];
+    }
+    // ^^^
+    if (ref.innerText == 'Add to watched') {
+      localStorage.setItem(
+        'filmsWatched',
+        JSON.stringify([
+          ...filmToWatch,
+          {
+            id: film.id,
+            title: film.title,
+            vote: film.vote_average,
+            poster: film.poster_path,
+          },
+        ]),
+      );
+    } else {
+      const newFilmToWatch = filmToWatch.filter(el => el.id !== film.id);
+      localStorage.setItem('filmsWatched', JSON.stringify(newFilmToWatch));
+    }
     changeButtonWatched();
-  });
+  }
+
+  function queueChange(film) {
+    const ref = document.getElementById('queue');
+    const filmToQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+    // Убрать этот костыль
+    if (filmToQueue === null) {
+      filmToQueue = [];
+    }
+    // ^^^
+    if (ref.innerText == 'Add to queue') {
+      localStorage.setItem(
+        'filmsQueue',
+        JSON.stringify([
+          ...filmToQueue,
+          {
+            id: film.id,
+            title: film.title,
+            vote: film.vote_average,
+            poster: film.poster_path,
+          },
+        ]),
+      );
+    } else {
+      const newFilmToQueue = filmToQueue.filter(el => el.id !== film.id);
+      localStorage.setItem('filmsWatched', JSON.stringify(newFilmToQueue));
+    }
+    changeButtonQueue();
+  }
+
+  fetchDetails(id);
 }
 
 // // Для добавления/удаления фильма из списка просмотренных
