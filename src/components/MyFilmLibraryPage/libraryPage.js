@@ -7,6 +7,8 @@ import debounce from 'lodash.debounce';
 import notify from '../../utils/notify';
 import spinner from '../../utils/spinner';
 
+import storage from '../../utils/storage';
+
 export default function (root, ...rest) {
   // Создаем всю разметку 
 
@@ -31,14 +33,17 @@ export default function (root, ...rest) {
 
   }
 
+  storage.save('filmsQueue', "filmsQueue");
+  storage.get("filmsQueue");
+
 
   const markup = myFilmLibraryPageTemplate();
   root.insertAdjacentHTML('beforeend', markup);
 
-
   const refs = {
     userInput: document.querySelector('#name-input'),
-    moviesList: document.querySelector('#movies-list'),
+    moviesListWatched: document.querySelector('#movies-list-watched'),
+    moviesListQueue: document.querySelector('#movies-list-queue'),
     watched: document.querySelector('watched'),
     queue: document.querySelector('queue'),
   };
