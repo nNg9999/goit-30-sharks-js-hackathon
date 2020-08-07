@@ -10,6 +10,8 @@ import spinner from '../../utils/spinner';
 export default function (root, ...rest) {
   // Создаем всю разметку 
 
+  const myConstant = 5;
+
   // const markup = myFilmLibraryPageTemplate();
   // root.insertAdjacentHTML('beforeend', markup);
 
@@ -77,9 +79,7 @@ export default function (root, ...rest) {
     refs.moviesList.insertAdjacentHTML('beforeend', markup);
   }
 
-  function clearListItems() {
-    refs.moviesList.innerHTML = '';
-  }
+
 
 
 
