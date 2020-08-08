@@ -19,16 +19,28 @@ export default function (root, ...rest) {
 
   function changeButtonQueue() {
     const ref = document.getElementById('queue');
-    if ((ref.innerText = 'Add to queue')) {
+    if (ref.dataset.value === 'add') {
+      ref.dataset.value = 'delete';
+      ref.classList.add('deleteStyle-queue');
       ref.innerText = 'Delete from queue';
-    } else ref.innerText = 'Add to queue';
+    } else {
+      ref.dataset.value = 'add';
+      ref.innerText = 'Add to queue';
+      ref.classList.remove('deleteStyle-queue');
+    }
   }
 
   function changeButtonWatched() {
     const ref = document.getElementById('watch');
-    if ((ref.innerText = 'Add to watched')) {
+    if (ref.dataset.value === 'add') {
+      ref.dataset.value = 'delete';
+      ref.classList.add('deleteStyle-watched');
       ref.innerText = 'Delete from watched';
-    } else ref.innerText = 'Add to watched';
+    } else {
+      ref.innerText = 'Add to watched';
+      ref.dataset.value = 'add';
+      ref.classList.remove('deleteStyle-watched');
+    }
   }
 
   function monitorButtonStatusText(id) {
@@ -66,10 +78,10 @@ export default function (root, ...rest) {
         monitorButtonStatusText(id);
         document
           .getElementById('watch')
-          .addEventListener('click', () => watchChange(data));
+          .addEventListener('click', () => watchChange(dataWithCutDate(data)));
         document
           .getElementById('queue')
-          .addEventListener('click', () => queueChange(data));
+          .addEventListener('click', () => queueChange(dataWithCutDate(data)));
       })
       .catch(notify.showError('ERROR!'));
   }
@@ -82,6 +94,7 @@ export default function (root, ...rest) {
   }
 
   function watchChange(film) {
+    console.log(film);
     const ref = document.getElementById('watch');
     let filmToWatch = JSON.parse(localStorage.getItem('filmsWatched'));
     // Убрать этот костыль
@@ -89,7 +102,7 @@ export default function (root, ...rest) {
       filmToWatch = [];
     }
     // ^^^
-    if (ref.innerText == 'Add to watched') {
+    if (ref.dataset.value === 'add') {
       localStorage.setItem(
         'filmsWatched',
         JSON.stringify([
@@ -99,6 +112,7 @@ export default function (root, ...rest) {
             title: film.title,
             vote: film.vote_average,
             poster: film.poster_path,
+            date: film.release_date,
           },
         ]),
       );
@@ -111,13 +125,13 @@ export default function (root, ...rest) {
 
   function queueChange(film) {
     const ref = document.getElementById('queue');
-    const filmToQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+    let filmToQueue = JSON.parse(localStorage.getItem('filmsQueue'));
     // Убрать этот костыль
     if (filmToQueue === null) {
       filmToQueue = [];
     }
     // ^^^
-    if (ref.innerText == 'Add to queue') {
+    if (ref.dataset.value === 'add') {
       localStorage.setItem(
         'filmsQueue',
         JSON.stringify([

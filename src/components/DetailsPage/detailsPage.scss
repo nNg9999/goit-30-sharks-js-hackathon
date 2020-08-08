@@ -102,6 +102,21 @@ tr:nth-child(odd) {
   border: none;
 }
 
+.deleteStyle {
+  &-watched {
+    background-image: url('../../images/icons/videocam-added.svg');
+    background-color: $main-bg-color;
+    color: #ffffff;
+  }
+
+  &-queue {
+    background-image: url('../../images/icons/calendar-added.svg');
+    background-color: $main-bg-color;
+    color: #ffffff;
+    margin-top: 3px;
+  }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .container {
     width: 718px;
@@ -131,6 +146,10 @@ tr:nth-child(odd) {
 
   .firstcol {
     width: 80px;
+  }
+  .deleteStyle-queue {
+    border-left: #ffffff solid 3px;
+    margin-top: 0px;
   }
 }
 
@@ -164,5 +183,10 @@ tr:nth-child(odd) {
 
   .firstcol {
     width: 115px;
+  }
+
+  .deleteStyle-queue {
+    border-left: #ffffff solid 3px;
+    margin-top: 0px;
   }
 }
