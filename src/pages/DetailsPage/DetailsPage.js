@@ -6,11 +6,10 @@ export default function (root) {
 }
 
 // function eventsHandlers(root) {
-//   const goHome = document.getElementById('go-home');
+//   const goHome = ;
 
-//   goHome.addEventListener('click', () => {
+//   document.getElementById('go-home').addEventListener('click', () => {
 //     root.innerHTML = '';
-//     DetailsPage(root);
 //     location.pathname = '/';
 //   });
 // }

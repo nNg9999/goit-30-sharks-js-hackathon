@@ -82,6 +82,7 @@ tr:nth-child(odd) {
   background-repeat: no-repeat;
   background-size: 20px 20px;
   background-position: left;
+  cursor: pointer;
 
   &-watched {
     background-image: url('../../images/icons/videocam.svg');
@@ -100,6 +101,7 @@ tr:nth-child(odd) {
   color: #ffffff;
   background-color: $main-bg-color;
   border: none;
+  cursor: pointer;
 }
 
 .deleteStyle {

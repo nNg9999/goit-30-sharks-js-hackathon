@@ -1,13 +1,13 @@
 import APIservice from '../../services/movies-api-service';
 import notify from '../../utils/notify';
 import spinner from '../../utils/spinner';
+import storage from '../../utils/storage';
 import './detailsPage.scss';
 
 import detailPageTemplate from './detailsPage.hbs';
 
 export default function (root, ...rest) {
-  const id = 475557;
-  let watchButton;
+  const id = storage.get('selectFilm');
 
   function dataWithCutDate(data) {
     return {
@@ -72,18 +72,21 @@ export default function (root, ...rest) {
 
   function fetchDetails(id) {
     spinner.show();
-    APIservice.fetchShowDetails(id)
-      .then(data => {
-        renderDetails(dataWithCutDate(data));
-        monitorButtonStatusText(id);
-        document
-          .getElementById('watch')
-          .addEventListener('click', () => watchChange(dataWithCutDate(data)));
-        document
-          .getElementById('queue')
-          .addEventListener('click', () => queueChange(dataWithCutDate(data)));
-      })
-      .catch(notify.showError('ERROR!'));
+    APIservice.fetchShowDetails(id).then(data => {
+      renderDetails(dataWithCutDate(data));
+      monitorButtonStatusText(id);
+      document
+        .getElementById('watch')
+        .addEventListener('click', () => watchChange(dataWithCutDate(data)));
+      document
+        .getElementById('queue')
+        .addEventListener('click', () => queueChange(dataWithCutDate(data)));
+      document.getElementById('go-home').addEventListener('click', () => {
+        root.innerHTML = '';
+        location.pathname = '/';
+      });
+    });
+    // .catch(notify.showError('ERROR!'));
   }
 
   function renderDetails(details) {
