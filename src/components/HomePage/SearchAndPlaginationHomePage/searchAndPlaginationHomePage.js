@@ -35,6 +35,7 @@ export default function (root) {
     e.preventDefault();
     inputValue = e.target.value;
     initialHomePage.resetPage();
+    refs.nextBtn.addEventListener('click', nextPageHandler);
     resetPageNumber();
     clearGallery();
     selectFetch(inputValue);
@@ -42,10 +43,6 @@ export default function (root) {
   }
 
   function nextPageHandler() {
-    if (totalPages <= initialHomePage.pageNumber) {
-      notify.showNoMatches();
-      return;
-    }
     initialHomePage.incrementPage();
     resetPageNumber();
     clearGallery();
@@ -73,14 +70,27 @@ export default function (root) {
       .fetchShowWithQuery(query, pageNumber)
       .then(({ results, total_pages }) => {
         totalPages = total_pages;
-        totalPages > 0
-          ? (refs.paginationWrapper.classList.remove('invisible'),
-            initialHomePage.createCardFunc(results),
-            initialHomePage.createRenderFilmsArray(results))
-          : (notify.showNoMatches(),
-            refs.paginationWrapper.classList.add('invisible'));
+        console.log(results);
+
+        if (totalPages > 0) {
+          refs.paginationWrapper.classList.remove('invisible');
+          initialHomePage.createCardFunc(results);
+          initialHomePage.createRenderFilmsArray(results);
+        }
+
+        if (totalPages === 0) {
+          notify.showNoMatches();
+          refs.paginationWrapper.classList.add('invisible');
+          return;
+        }
+
+        if (totalPages <= initialHomePage.pageNumber) {
+          notify.showInfo('This is the last page');
+          refs.nextBtn.removeEventListener('click', nextPageHandler);
+          return;
+        }
       })
-      .catch(error => notify.showError())
+      .catch(error => notify.showError(error))
       .finally(() => spinner.hide());
   }
 
