@@ -1,5 +1,7 @@
+@import '../../sass/helpers/variables.scss';
+
 .container {
-  width: 276px;
+  width: 284px;
   margin: 0 auto;
 }
 
@@ -16,11 +18,10 @@
 }
 
 .header {
-  padding-top: 10px;
+  padding-top: 18px;
   margin-bottom: 22px;
   height: 66px;
-  background-color: rgb(119, 192, 186);
-  /* $main-bg-color; */
+  background-color: $main-bg-color;
 }
 
 .logotype {
@@ -34,9 +35,9 @@
 
 .logotype__link {
   font-size: 12px;
-  font-family: 'Roboto', sans-serif;
+  font-family: $main-font-stack;
   font-weight: 600;
-  color: #372c48de;
+  color: $secondary-font-color;
 }
 
 .navigation {
@@ -52,28 +53,22 @@
   width: 234px;
 }
 
-.navigation__list-item {
-  display: flex;
-  justify-content: center;
-  width: 80px;
-}
-
 .navigation__list-link {
   display: flex;
-  width: 120;
+  justify-content: center;
+  width: 120px;
+  padding-top: 8px;
+  padding-bottom: 15px;
   font-size: 12px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: $main-font-stack;
   font-weight: 600;
-  color: rgba(55, 44, 72, 0.702);
+  color: $secondary-font-color;
   text-transform: uppercase;
-  line-height: 1.2;
-  text-align: center;
 }
 
 .link-active {
-  color: #372c48;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #372c48;
+  color: $main-font-color;
+  border-bottom: 2px solid $main-font-color;
 }
 
 @media screen and (max-width: 767px) {
