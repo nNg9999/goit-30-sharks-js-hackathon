@@ -26,4 +26,4 @@ export default {
   save,
   get,
   remove,
-}
+};

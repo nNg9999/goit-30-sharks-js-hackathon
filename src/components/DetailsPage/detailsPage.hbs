@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="filmDetails__wrapper">
+    <div class="filmDetails__poster">
+      {{!-- <picture>
+      <source media="(max-width: 767px)" srcset='https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}'
+        width='274' />
+      <source media="(min-width: 768px) and (max-width: 1023px)"
+        srcset='https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}' width='357' />
+      <source media="(min-width: 1024px)" srcset='https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}'
+        width='1624' /> --}}
+      <img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}' alt="poster" />
+      {{!-- </picture> --}}
+    </div>
+    <div class="filmDetails__right">
+      <div class="filmDetails__main">
+        <h2>{{title}} ({{release_date}})</h2>
+        <table>
+          <tr>
+            <td class="firstcol">vote/votes</td>
+            <td>{{vote_average}} / {{vote_count}}</td>
+          </tr>
+          <tr>
+            <td>popularity</td>
+            <td>{{popularity}}</td>
+          </tr>
+          <tr>
+            <td>original title</td>
+            <td>{{original_title}}</td>
+          </tr>
+          <tr>
+            <td>genre</td>
+            <td>{{genres}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="filmDetails__about">
+        <h2>About</h2>
+        <p class="filmDetails__about-text">
+          {{overview}}
+        </p>
+      </div>
+      <div class="filmDetails__buttons">
+        <div class="filmDetails__button filmDetails__button-watched" data-value="add" id="watch">
+          Add to watched
+        </div>
+        <div class="filmDetails__button filmDetails__button-queue" data-value="add" id="queue">
+          Add to queue
+        </div>
+      </div>
+      <button class="filmDetails__go-home" id="go-home">Go home</button>
+    </div>
+  </div>
+</div>
