@@ -1,11 +1,13 @@
-<input type="text" id="name-input">
-<ul>
-  <li class="watched">
-    Watched
-  </li>
-  <li class="queue">
-    Queue
-  </li>
-</ul>
+<div class="libraryBtn_container">
+  <div class="libraryBtn">
+    <button class="libraryBtn_items watched" data-action="watched-btn">
+      Watched
+    </button>
+    <button class="libraryBtn_items queue" data-action="queue-btn">
+      Queue
+    </button>
+  </div>
+</div>
 
-<ul id="movies-list"></ul>
+<ul class="movie-list" id="js-watched"></ul>
+<ul class="movie-list" id="js-queue"></ul>

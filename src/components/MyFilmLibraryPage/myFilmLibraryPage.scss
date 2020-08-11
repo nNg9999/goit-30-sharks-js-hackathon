@@ -1,0 +1,292 @@
+@import '../../sass/helpers/variables.scss';
+
+.libraryBtn_container {
+  width: 100%;
+  min-width: 320px;
+  padding-bottom: 14px;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.2);
+}
+
+.libraryBtn {
+  margin: 0 auto;
+  display: flex;
+  width: 280px;
+  height: 40px;
+}
+
+.libraryBtn_items {
+  outline: none;
+  border: none;
+  margin: 0 auto;
+  width: 140px;
+  text-align: center;
+  font-family: $main-font-stack;
+  font-size: 16px;
+  color: $main-font-color;
+  padding-top: 11px;
+  position: relative;
+  border-bottom: 2px solid rgb(156, 153, 165);
+}
+
+.active {
+  background-color: $main-bg-color;
+  border: none;
+  color: #fff;
+}
+
+.libraryBtn_items:hover .libraryBtn_items::after {
+  visibility: hidden;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 320px; //удалить как станет в контейнер
+  padding-top: 12px;
+
+  &__item {
+    position: relative;
+    transition: all 300ms linear;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 767px) {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__poster {
+    width: 300px;
+    height: 160px;
+    border-radius: 10px;
+  }
+
+  &__title {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 700;
+    position: absolute;
+    color: rgb(240, 235, 235);
+    bottom: 8px;
+    left: 14px;
+    text-shadow: 1px 1px 2px black;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 5px;
+    left: 262px;
+    width: 32px;
+    height: 16px;
+    color: $main-font-color;
+    background-color: white;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .movie-list {
+    width: 768px; //удалить как станет в контейнер
+    justify-content: space-evenly;
+    padding-top: 28px;
+
+    &__item {
+      margin-bottom: 20px;
+    }
+
+    &__poster {
+      width: 348px;
+      height: 176px;
+    }
+
+    &__icon {
+      left: 310px;
+    }
+
+    &__title {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-list {
+    width: 1024px; //удалить как станет в контейнер
+    padding-top: 30px;
+
+    &__item:not(:nth-last-child(-n + 2)) {
+      margin-bottom: 26px;
+    }
+
+    &__poster {
+      width: 466px;
+      height: 246px;
+    }
+
+    &__icon {
+      left: 428px;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 23px;
+      bottom: 20px;
+    }
+  }
+}
+
+// .movies-list {
+//   margin: 0 auto;
+//   display: flex;
+//   flex-wrap: wrap;
+//   width: 310px;
+// }
+
+// .movies_list_item {
+//   margin: 0 auto;
+//   position: relative;
+//   margin-bottom: 12px;
+// }
+
+// .movies_list_item:first-child {
+//   margin-top: 14px;
+// }
+
+// .movies_list_item:last-child {
+//   margin-bottom: 15px;
+// }
+
+// .movie-list__icon {
+//   position: absolute;
+//   top: 5px;
+//   left: 310px;
+//   width: 32px;
+//   height: 16px;
+//   color: $main-font-color;
+//   background-color: white;
+//   border-radius: 6px;
+//   text-align: center;
+//   font-size: 12px;
+// }
+
+// .original_title {
+//   position: absolute;
+//   color: white;
+//   top: 140px;
+//   left: 8px;
+//   font-size: 12px;
+// }
+
+// @media (min-width: 320px) {
+//   .movies_list-img {
+//     width: 298px;
+//   }
+// }
+
+// @media (min-width: 768px) {
+//   .movies_list-img {
+//     width: 344px;
+//   }
+
+//   .movies-list {
+//     width: 768px;
+//     flex-direction: row;
+//     justify-content: space-between;
+//   }
+
+//   .movies_list_item:first-child {
+//     margin-top: 30px;
+//   }
+
+//   .movies_list_item:nth-child(2) {
+//     margin-top: 30px;
+//   }
+
+//   .movies_list_item:last-child {
+//     margin-bottom: 30px;
+//   }
+
+//   .movies_list_item:nth-child(odd) {
+//     margin-left: 28px;
+//   }
+
+//   .movies_list_item:nth-child(even) {
+//     margin-right: 28px;
+//   }
+
+//   //   .movies_list_item:nth-child(n-1) {
+//   //     margin-bottom: 30px;
+//   //   }
+//   .icon_vote_average {
+//     top: 10px;
+//     left: 302px;
+//     width: 36px;
+//     height: 20px;
+//     border-radius: 9px;
+//     font-size: 15px;
+//   }
+
+//   .original_title {
+//     top: 168px;
+//     left: 12px;
+//     font-size: 15px;
+//   }
+
+//   .movies_list_item {
+//     margin-bottom: 16px;
+//   }
+// }
+
+// @media (min-width: 1024px) {
+//   .movies_list-img {
+//     width: 464px;
+//   }
+
+//   //   .searchBar {
+//   //     background-color: $secondary-bg-color;
+//   //   }
+//   .movies-list {
+//     width: 1024px;
+//   }
+
+//   .movies_list_item:nth-child(odd) {
+//     margin-left: 30px;
+//   }
+
+//   .movies_list_item:nth-child(even) {
+//     margin-right: 30px;
+//   }
+
+//   //   .movies_list_item:nth-child(n-1) {
+//   //     margin-bottom: 30px;
+//   //   }
+//   .icon_vote_average {
+//     top: 10px;
+//     left: 404px;
+//     width: 50px;
+//     height: 26px;
+//     border-radius: 10px;
+//     font-size: 20px;
+//   }
+
+//   .original_title {
+//     top: 216px;
+//     left: 15px;
+//     font-size: 20px;
+//   }
+
+//   .movies_list_item {
+//     margin-bottom: 22px;
+//   }
+
+//   .searchBar_container {
+//     background-color: rgba(243, 246, 246, 0.2);
+//     box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+//   }
+// }

@@ -1,30 +1,9 @@
-{{!-- adult: false
-backdrop_path: "/sEku5PGhCZFvVxyuIG7PYPAsloc.jpg"
-genre_ids: [27]
-id: 24655
-original_language: "en"
-original_title: "The Car"
-overview: "The film is set in the fictional Utah community of Santa Ynez, which is being terrorized by a mysterious
-black coupe that appears out of nowhere and begins running people down. After the car kills off the town's Sheriff (John
-Marley), it becomes the job of Captain Wade Parent (James Brolin) to stop the murderous driver."
-popularity: 15.679
-poster_path: "/gFM9yMrO4fQMiG440Lx6bazB517.jpg"
-release_date: "1977-05-12"
-title: "The Car"
-video: false
-vote_average: 6
-vote_count: 132 --}}
-
-{{#each this}}
-
-<li class="Movies_list_item" id="{{movieId}}">
-  <img src="https://image.tmdb.org/t/p/w200/{{backdrop_path}}" alt="{{original_title}}" />
-  <span>
-    {{vote_average}}
-  </span>
-  <p>
-    {{original_title}}
+<li class="movie-list__item" id="{{id}}">
+  <img class="movie-list__poster" src="https://image.tmdb.org/t/p/w500{{poster}}" alt="{{original_title}}" />
+  <p class="movie-list__title">
+    {{title}}
   </p>
+  <span class="movie-list__icon">
+    {{vote}}
+  </span>
 </li>
-
-{{/each}}
