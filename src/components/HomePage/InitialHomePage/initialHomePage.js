@@ -3,6 +3,7 @@ import notify from '../../../utils/notify';
 import apiService from '../../../services/movies-api-service';
 import navigation from '../../Header/navigation';
 import initialHomePageTemplate from './initialHomePage.hbs';
+import noPoster from '../../../images/noPoster.jpg';
 import './initialHomePage.scss';
 
 export default {
@@ -77,7 +78,7 @@ export default {
   createFilmObjectForTemplate(film) {
     const pathToPoster = film.backdrop_path
       ? `${apiService.pathImage}${film.backdrop_path}`
-      : '../../../images/noPoster.jpg';
+      : noPoster;
     const title = film.title ? film.title : film.name;
     const id = film.id;
     const year = film.release_date ? `(${film.release_date.slice(0, 4)})` : '';
