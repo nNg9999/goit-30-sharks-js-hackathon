@@ -1,3 +1,13 @@
+.hidden {
+  display: none;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+
 /* SPINNER */
 .spinner-overlay {
   position: fixed;

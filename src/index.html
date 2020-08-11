@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Webpack Starter Kit</title>
-  </head>
 
-  <body>
-    <header id="header"></header>
-    <main id="root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Sharks filmoteka</title>
+</head>
+
+<body>
+
+  <header class="header" id="js-header">
+    <div class="container">
+      <nav class="navigation">
+        <a href="#" class="logotype" id="js-logo">
+          <img src="./images/logo.svg" class="logotype__img" alt="logotype" width="32" height="32" />
+          <span class="logotype__link">Filmoteka</span>
+        </a>
+        <ul class="navigation__list">
+          <li class="navigation__list-item">
+            <a href="#" class="navigation__list-link home-link">Home</a>
+          </li>
+          <li class="navigation__list-item">
+            <a href="#" class="navigation__list-link library-link">My library</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="root">
+    <div class="container">
+
+      <!-- SPINNER -->
       <div class="spinner-overlay hidden" id="js-spinner">
         <div class="sk-circle">
           <div class="sk-circle1 sk-child"></div>
@@ -26,8 +50,18 @@
           <div class="sk-circle12 sk-child"></div>
         </div>
       </div>
-    </main>
+      <section class="home" id="home"></section>
+    </div>
+  </main>
 
-    <footer id="footer"></footer>
-  </body>
+  <footer class="footer" id="js-footer">
+    <div class="container">
+      <p class="footer__content">
+        Made by Sharks
+      </p>
+      <div class="footer__btn"><a href="#header"></a></div>
+    </div>
+  </footer>
+</body>
+
 </html>
