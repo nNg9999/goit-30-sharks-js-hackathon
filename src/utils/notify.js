@@ -1,24 +1,32 @@
-import { defaults, info, error } from '@pnotify/core';
-import '@pnotify/core/dist/BrightTheme.css';
-defaults.addClass = 'center';
-defaults.delay = 2000;
-defaults.closer = false;
-defaults.sticker = false;
-defaults.maxTextHeight = null;
+import toastr from 'toastr';
+import 'toastr/build/toastr.css';
+toastr.options = {
+  closeButton: false,
+  debug: false,
+  newestOnTop: false,
+  progressBar: false,
+  positionClass: 'toast-top-right',
+  preventDuplicates: false,
+  onclick: null,
+  showDuration: '300',
+  hideDuration: '1000',
+  timeOut: '5000',
+  extendedTimeOut: '1000',
+  showEasing: 'swing',
+  hideEasing: 'linear',
+  showMethod: 'fadeIn',
+  hideMethod: 'fadeOut',
+};
 export default {
   showInfo(text) {
-    info({
-      text: text || 'Please enter some information',
-    });
-  },
-  showNoMatches(text) {
-    error({
-      text: text || 'No matches found',
-    });
+    toastr['info'](text || 'Please enter some information');
   },
   showError(text) {
-    error({
-      text: text || 'Something is going wrong. Please,try again',
-    });
+    toastr['error'](
+      text || 'Something is going wrong. Please,try again. Prepare to die!',
+    );
+  },
+  showNoMatches(text) {
+    toastr['error'](text || 'No matches found');
   },
 };
