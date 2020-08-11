@@ -28,23 +28,12 @@ const fetchShowReviews = showId => {
 };
 
 const fetchShowWithQuery = (searchQuery, pageNumber) => {
-<<<<<<< HEAD
-  return fetch(
-    `${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=${pageNumber}&include_adult=false`,
-  )
+  return fetch(`${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=${pageNumber}&include_adult=false`)
     .then(res => res.json())
     .then(data => data);
-  // .then(data => data.results);
 };
 
 const fetchShowWithTrending = pageNumber => {
-  return fetch(
-    `${baseURL}/trending/all/day?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false`,
-  )
-    .then(res => res.json())
-    .then(res => res.results);
-};
-=======
   return fetch(`${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=${pageNumber}&include_adult=false`)
     .then(res => res.json());
 };
@@ -53,7 +42,7 @@ const fetchShowWithTrending = (pageNumber) => {
   return fetch(`${baseURL}/trending/movie/week?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false`)
     .then(res => res.json());
 }
->>>>>>> 0671586f3402d64f6ff48e49b5a9753643107e9d
+
 
 export default {
   pathImage,
