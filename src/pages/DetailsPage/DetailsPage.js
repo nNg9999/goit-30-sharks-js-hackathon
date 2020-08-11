@@ -1,17 +1,15 @@
 import DetailsPage from '../../components/DetailsPage/filmsDetailsPage';
 
 export default function (root) {
-    DetailsPage(root);
-    eventsHandlers(root);
+  DetailsPage(root);
+  // eventsHandlers(root);
 }
 
-function eventsHandlers(root) {
-    const goHome = document.querySelector('.go-home');
+// function eventsHandlers(root) {
+//   const goHome = ;
 
-    goHome.addEventListener('click', () => {
-        root.innerHTML = '';
-        DetailsPage(root);
-        location.pathname = '/';
-    })
-}
-
+//   document.getElementById('go-home').addEventListener('click', () => {
+//     root.innerHTML = '';
+//     location.pathname = '/';
+//   });
+// }

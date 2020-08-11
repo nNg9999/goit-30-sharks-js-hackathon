@@ -5,34 +5,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Webpack Starter Kit</title>
-
+  <title>Sharks filmoteka</title>
 </head>
 
 <body>
-  <header id="header"></header>
-  <main id="root">
 
-    <div class="spinner-overlay hidden" id="js-spinner">
-      <div class="sk-circle">
-        <div class="sk-circle1 sk-child"></div>
-        <div class="sk-circle2 sk-child"></div>
-        <div class="sk-circle3 sk-child"></div>
-        <div class="sk-circle4 sk-child"></div>
-        <div class="sk-circle5 sk-child"></div>
-        <div class="sk-circle6 sk-child"></div>
-        <div class="sk-circle7 sk-child"></div>
-        <div class="sk-circle8 sk-child"></div>
-        <div class="sk-circle9 sk-child"></div>
-        <div class="sk-circle10 sk-child"></div>
-        <div class="sk-circle11 sk-child"></div>
-        <div class="sk-circle12 sk-child"></div>
+  <header class="header" id="js-header">
+    <div class="container">
+      <nav class="navigation">
+        <a href="#" class="logotype" id="js-logo">
+          <img src="./images/logo.svg" class="logotype__img" alt="logotype" width="32" height="32" />
+          <span class="logotype__link">Filmoteka</span>
+        </a>
+        <ul class="navigation__list">
+          <li class="navigation__list-item">
+            <a href="#" class="navigation__list-link home-link">Home</a>
+          </li>
+          <li class="navigation__list-item">
+            <a href="#" class="navigation__list-link library-link">My library</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="root">
+    <div class="container">
+
+      <!-- SPINNER -->
+      <div class="spinner-overlay hidden" id="js-spinner">
+        <div class="sk-circle">
+          <div class="sk-circle1 sk-child"></div>
+          <div class="sk-circle2 sk-child"></div>
+          <div class="sk-circle3 sk-child"></div>
+          <div class="sk-circle4 sk-child"></div>
+          <div class="sk-circle5 sk-child"></div>
+          <div class="sk-circle6 sk-child"></div>
+          <div class="sk-circle7 sk-child"></div>
+          <div class="sk-circle8 sk-child"></div>
+          <div class="sk-circle9 sk-child"></div>
+          <div class="sk-circle10 sk-child"></div>
+          <div class="sk-circle11 sk-child"></div>
+          <div class="sk-circle12 sk-child"></div>
+        </div>
       </div>
+      <section class="home" id="home"></section>
     </div>
   </main>
 
-  <footer id="footer"></footer>
-
+  <footer class="footer" id="js-footer">
+    <div class="container">
+      <p class="footer__content">
+        Made by Sharks
+      </p>
+      <div class="footer__btn"><a href="#header"></a></div>
+    </div>
+  </footer>
 </body>
 
 </html>

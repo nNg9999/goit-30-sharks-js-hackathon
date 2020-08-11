@@ -23,10 +23,12 @@ const fetchShowReviews = showId => {
     `${baseURL}/movie/${showId}/reviews?api_key=${apiKey}&language=en-US&page=1`,
   )
     .then(res => res.json())
-    .then(res => res.results);
+    .then(res => res.data);
+
 };
 
 const fetchShowWithQuery = (searchQuery, pageNumber) => {
+<<<<<<< HEAD
   return fetch(
     `${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=${pageNumber}&include_adult=false`,
   )
@@ -42,6 +44,16 @@ const fetchShowWithTrending = pageNumber => {
     .then(res => res.json())
     .then(res => res.results);
 };
+=======
+  return fetch(`${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=${pageNumber}&include_adult=false`)
+    .then(res => res.json());
+};
+
+const fetchShowWithTrending = (pageNumber) => {
+  return fetch(`${baseURL}/trending/movie/week?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false`)
+    .then(res => res.json());
+}
+>>>>>>> 0671586f3402d64f6ff48e49b5a9753643107e9d
 
 export default {
   pathImage,
