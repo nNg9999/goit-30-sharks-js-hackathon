@@ -24,19 +24,18 @@ const fetchShowReviews = showId => {
 
   return fetch(`${baseURL}/movie/${showId}/reviews?api_key=${apiKey}&language=en-US&page=1`)
     .then(res => res.json())
-    .then(res => res.results);
+    .then(res => res.data);
+
 };
 
 const fetchShowWithQuery = (searchQuery, pageNumber) => {
   return fetch(`${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=${pageNumber}&include_adult=false`)
-    .then(res => res.json())
-    .then(data => data.results)
+    .then(res => res.json());
 };
 
 const fetchShowWithTrending = (pageNumber) => {
-  return fetch(`${baseURL}/trending/all/day?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false`)
-    .then(res => res.json())
-    .then(res => res.results)
+  return fetch(`${baseURL}/trending/movie/week?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false`)
+    .then(res => res.json());
 }
 
 export default {

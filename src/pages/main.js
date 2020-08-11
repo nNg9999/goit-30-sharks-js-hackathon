@@ -1,7 +1,7 @@
-import HomePage from "./HomePage/HomePage";
+import HomePage from './HomePage/HomePage';
 import DetailsPage from './DetailsPage/DetailsPage';
 import MyFilmLibraryPage from './MyFilmLibraryPage/MyFilmLibraryPage';
-
+import pathPage from './path';
 function getCurrentPath() {
   return location.pathname;
 }
@@ -11,15 +11,15 @@ function init() {
   const path = getCurrentPath();
 
   switch (path) {
-    case '/': {
+    case pathPage.home: {
       HomePage(root);
       break;
     }
-    case '/details': {
+    case pathPage.details: {
       DetailsPage(root);
       break;
     }
-    case '/myFilmLibraryPage': {
+    case pathPage.library: {
       MyFilmLibraryPage(root);
       break;
     }
