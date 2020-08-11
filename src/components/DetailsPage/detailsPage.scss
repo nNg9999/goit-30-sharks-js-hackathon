@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 @import '../../sass/helpers/variables.scss';
 
 .container {
@@ -31,9 +28,11 @@ th {
   padding-top: 6px;
   padding-bottom: 6px;
 }
+
 .firstcol {
   width: 70px;
 }
+
 tr:nth-child(odd) {
   background-color: $main-bg-color;
 }
@@ -70,6 +69,7 @@ tr:nth-child(odd) {
 .filmDetails__main {
   margin-bottom: 40px;
 }
+
 .filmDetails__about {
   margin-bottom: 40px;
 }
@@ -127,6 +127,7 @@ tr:nth-child(odd) {
     width: 718px;
     margin: 0 auto;
   }
+
   .filmDetails__wrapper {
     display: flex;
     flex-direction: row;
@@ -152,6 +153,7 @@ tr:nth-child(odd) {
   .firstcol {
     width: 80px;
   }
+
   .deleteStyle-queue {
     border-left: #ffffff solid 3px;
     margin-top: 0px;
@@ -170,12 +172,14 @@ tr:nth-child(odd) {
     padding-top: 27px;
     padding-bottom: 27px;
   }
+
   .filmDetails__poster {
     padding-right: 35px;
     padding-left: 35px;
     margin-bottom: 0px;
     width: 482px;
   }
+
   .filmDetails__buttons {
     display: flex;
     flex-direction: row;
@@ -195,4 +199,3 @@ tr:nth-child(odd) {
     margin-top: 0px;
   }
 }
->>>>>>> b1062fe4ad9ada886463999409d615caa9fa1595

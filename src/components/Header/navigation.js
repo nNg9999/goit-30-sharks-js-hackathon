@@ -31,8 +31,10 @@ refs.libraryLink.addEventListener('click', activeLibraryPage);
 
 export default {
   activeDetailsPage(movieId, itsLibraryFilm) {
+
     location.pathname = pathPage.details;
     storage.save('selectFilm', movieId);
+    console.log(movieId, itsLibraryFilm);
 
     refs.libraryLink.addEventListener('click', activeLibraryPage);
   },

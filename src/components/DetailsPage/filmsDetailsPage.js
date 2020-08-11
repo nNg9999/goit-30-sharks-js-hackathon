@@ -1,14 +1,13 @@
 import APIservice from '../../services/movies-api-service';
 import notify from '../../utils/notify';
 import spinner from '../../utils/spinner';
-import storage from '../../utils/storage';
 import './detailsPage.scss';
 
 import detailPageTemplate from './detailsPage.hbs';
+import storage from '../../utils/storage';
 
 export default function (root, ...rest) {
   const id = storage.get('selectFilm');
-
   function dataWithCutDate(data) {
     return {
       ...data,
@@ -46,14 +45,14 @@ export default function (root, ...rest) {
   function monitorButtonStatusText(id) {
     const filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
     const filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
-    if (filmsQueue) {
+    if (filmsQueue !== null) {
       filmsQueue.forEach(el => {
         if (el.id === id) {
           changeButtonQueue();
         }
       });
     }
-    if (filmsWatched) {
+    if (filmsWatched !== null) {
       filmsWatched.forEach(el => {
         if (el.id === id) {
           changeButtonWatched();
@@ -75,6 +74,7 @@ export default function (root, ...rest) {
     APIservice.fetchShowDetails(id).then(data => {
       renderDetails(dataWithCutDate(data));
       monitorButtonStatusText(id);
+      console.log(data);
       document
         .getElementById('watch')
         .addEventListener('click', () => watchChange(dataWithCutDate(data)));
@@ -86,7 +86,6 @@ export default function (root, ...rest) {
         location.pathname = '/';
       });
     });
-    // .catch(notify.showError('ERROR!'));
   }
 
   function renderDetails(details) {
@@ -100,11 +99,9 @@ export default function (root, ...rest) {
     console.log(film);
     const ref = document.getElementById('watch');
     let filmToWatch = JSON.parse(localStorage.getItem('filmsWatched'));
-    // Убрать этот костыль
     if (filmToWatch === null) {
       filmToWatch = [];
     }
-    // ^^^
     if (ref.dataset.value === 'add') {
       localStorage.setItem(
         'filmsWatched',
@@ -112,9 +109,9 @@ export default function (root, ...rest) {
           ...filmToWatch,
           {
             id: film.id,
-            title: film.title,
+            title: film.title ? film.title : film.name,
             vote: film.vote_average,
-            poster: film.poster_path,
+            poster: film.backdrop_path,
             date: film.release_date,
           },
         ]),
@@ -129,11 +126,9 @@ export default function (root, ...rest) {
   function queueChange(film) {
     const ref = document.getElementById('queue');
     let filmToQueue = JSON.parse(localStorage.getItem('filmsQueue'));
-    // Убрать этот костыль
     if (filmToQueue === null) {
       filmToQueue = [];
     }
-    // ^^^
     if (ref.dataset.value === 'add') {
       localStorage.setItem(
         'filmsQueue',
@@ -141,80 +136,19 @@ export default function (root, ...rest) {
           ...filmToQueue,
           {
             id: film.id,
-            title: film.title,
+            title: film.title ? film.title : film.name,
             vote: film.vote_average,
-            poster: film.poster_path,
+            poster: film.backdrop_path,
+            date: film.release_date,
           },
         ]),
       );
     } else {
       const newFilmToQueue = filmToQueue.filter(el => el.id !== film.id);
-      localStorage.setItem('filmsWatched', JSON.stringify(newFilmToQueue));
+      localStorage.setItem('filmsQueue', JSON.stringify(newFilmToQueue));
     }
     changeButtonQueue();
   }
 
   fetchDetails(id);
 }
-
-// // Для добавления/удаления фильма из списка просмотренных
-// function watchChange(id) {
-//   spinner.show();
-//   APIservice.fetchShowDetails(id)
-//     .then(data => {
-//       const film = dataWithCutDate(data);
-//       const ref = document.getElementById('watch');
-//       const filmToWatch = JSON.parse(localStorage.getItem('filmsWatched'));
-//       if (ref.innerText == 'Add to watched') {
-//         localStorage.setItem(
-//           'filmsWatched',
-//           JSON.stringify([
-//             ...filmToWatch,
-//             {
-//               id: film.id,
-//               title: film.title,
-//               vote: film.vote_average,
-//               poster: film.poster_path,
-//             },
-//           ]),
-//         );
-//       } else {
-//         const newFilmToWatch = filmToWatch.filter(el => el.id !== id);
-//         localStorage.setItem('filmsWatched', JSON.stringify(newFilmToWatch));
-//       }
-//       changeButtonWatched();
-//     })
-//     .catch(notify.showError('ERROR!'))
-//     .finally(spinner.hide());
-// }
-
-// // Для добавления/удаления фильма из очереди
-// function queueChange(id) {
-//   spinner.show();
-//   APIservice.fetchShowDetails(id)
-//     .then(data => {
-//       const film = dataWithCutDate(data);
-//       const ref = document.getElementById('queue');
-//       const filmToQueue = JSON.parse(localStorage.getItem('filmsQueue'));
-//       if (ref.innerText == 'Add to queue') {
-//         localStorage.setItem(
-//           'filmsQueue',
-//           JSON.stringify([
-//             ...filmToQueue,
-//             {
-//               id: film.id,
-//               title: film.title,
-//               vote: film.vote_average,
-//               poster: film.poster_path,
-//             },
-//           ]),
-//         );
-//       } else {
-//         const newFilmToQueue = filmToQueue.filter(el => el.id !== id);
-//         localStorage.setItem('filmsWatched', JSON.stringify(newFilmToQueue));
-//       }
-//       changeButtonWatched();
-//     })
-//     .catch(notify.showError('ERROR!'))
-//     .finally(spinner.hide());
-// }

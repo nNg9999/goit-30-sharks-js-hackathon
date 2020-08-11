@@ -15,7 +15,7 @@ export default function (root, ...rest) {
     moviesListQueue: document.querySelector('#js-queue'),
     watched: document.querySelector('.watched'),
     queue: document.querySelector('.queue'),
-    moviesListItem: document.querySelector('.movie-list__item'),
+    moviesList: document.querySelector('.movie-list'),
   };
 
   // refs.moviesListItem.addEventListener('click', navigation.activeDetailsPage);
@@ -78,24 +78,31 @@ export default function (root, ...rest) {
   refs.queue.addEventListener('click', handlerClickQueue);
 
   function handlerClickWatched(e) {
+    // console.log("handlerClickWatched");
     e.preventDefault();
     const movieId = e.target.getAttribute('id');
-    // location.pathname = '/details';
-    // navigation.activeDetailsPage(movieId, true);
-    clearListItems();
+
+    clearListItems(movieId);
     drawWatchedFilmList();
-    navigation.activeDetailsPage(movieId, true);
     showWatched();
+    // location.pathname = '/details';
   }
 
   function handlerClickQueue(e) {
     e.preventDefault();
     const movieId = e.target.getAttribute('id');
-    // navigation.activeDetailsPage(movieId, true);
-    clearListItems();
+    clearListItems(movieId);
     drawQueueFilmList();
-    // navigation.activeDetailsPage(movieId, true);
     hidenWatched();
+  }
+
+  refs.moviesListWatched.addEventListener('click', clickHandlerMovieId)
+  refs.moviesListQueue.addEventListener('click', clickHandlerMovieId)
+
+  function clickHandlerMovieId(e) {
+    const movieId = e.target.dataset.id;
+    navigation.activeDetailsPage(movieId, true);
+
   }
   drawWatchedFilmList();
   showWatched();
