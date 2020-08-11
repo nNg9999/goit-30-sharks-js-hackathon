@@ -1,3 +1,10 @@
+main {
+  min-height: 70vh;
+  margin: 0 auto;
+}
+
+
+
 .hidden {
   display: none;
 }

@@ -55,7 +55,7 @@ export default function (root, ...rest) {
 
   function createPlug(text) {
     return `<div>
-      You do not have to ${text} queue movies to watch.Add them.
+      You do not have to ${text} movies to watch. Add them.
     </div>`;
   }
 

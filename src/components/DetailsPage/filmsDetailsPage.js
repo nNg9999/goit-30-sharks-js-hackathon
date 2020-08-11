@@ -2,20 +2,21 @@ import APIservice from '../../services/movies-api-service';
 import notify from '../../utils/notify';
 import spinner from '../../utils/spinner';
 import './detailsPage.scss';
-
 import detailPageTemplate from './detailsPage.hbs';
 import storage from '../../utils/storage';
 
+import initialHomePage from '../HomePage/InitialHomePage/initialHomePage';
+
+
 export default function (root, ...rest) {
-  const id = storage.get('selectFilm');
+  const id = Number(storage.get('selectFilm'));
   function dataWithCutDate(data) {
     return {
       ...data,
-      release_date: data.release_date.slice(0, 4),
+      release_date: data.release_date ? data.release_date.slice(0, 4) : '',
       genres: putCommas(data),
     };
   }
-
   function changeButtonQueue() {
     const ref = document.getElementById('queue');
     if (ref.dataset.value === 'add') {
@@ -28,7 +29,6 @@ export default function (root, ...rest) {
       ref.classList.remove('deleteStyle-queue');
     }
   }
-
   function changeButtonWatched() {
     const ref = document.getElementById('watch');
     if (ref.dataset.value === 'add') {
@@ -41,18 +41,17 @@ export default function (root, ...rest) {
       ref.classList.remove('deleteStyle-watched');
     }
   }
-
   function monitorButtonStatusText(id) {
     const filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
     const filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
-    if (filmsQueue !== null) {
+    if (filmsQueue !== null && filmsQueue.length !== 0) {
       filmsQueue.forEach(el => {
         if (el.id === id) {
           changeButtonQueue();
         }
       });
     }
-    if (filmsWatched !== null) {
+    if (filmsWatched !== null && filmsWatched.length !== 0) {
       filmsWatched.forEach(el => {
         if (el.id === id) {
           changeButtonWatched();
@@ -60,7 +59,6 @@ export default function (root, ...rest) {
       });
     }
   }
-
   function putCommas(data) {
     return data.genres.reduce(function (acc, value, index, arr) {
       if (index !== arr.length - 1) {
@@ -68,35 +66,32 @@ export default function (root, ...rest) {
       } else return `${acc} ${value.name}`;
     }, '');
   }
-
   function fetchDetails(id) {
     spinner.show();
-    APIservice.fetchShowDetails(id).then(data => {
-      renderDetails(dataWithCutDate(data));
-      monitorButtonStatusText(id);
-      console.log(data);
-      document
-        .getElementById('watch')
-        .addEventListener('click', () => watchChange(dataWithCutDate(data)));
-      document
-        .getElementById('queue')
-        .addEventListener('click', () => queueChange(dataWithCutDate(data)));
-      document.getElementById('go-home').addEventListener('click', () => {
-        root.innerHTML = '';
-        location.pathname = '/';
+    APIservice.fetchShowDetails(id)
+      .then(res => dataWithCutDate(res))
+      .then(data => {
+        renderDetails(data);
+        monitorButtonStatusText(id);
+        document
+          .getElementById('watch')
+          .addEventListener('click', () => watchChange(data));
+        document
+          .getElementById('queue')
+          .addEventListener('click', () => queueChange(data));
+        document.getElementById('go-back').addEventListener('click', () => {
+          root.innerHTML = '';
+          history.back();
+        });
       });
-    });
   }
-
   function renderDetails(details) {
     spinner.hide();
     let markup = '';
     markup = detailPageTemplate(details);
     root.insertAdjacentHTML('beforeend', markup);
   }
-
   function watchChange(film) {
-    console.log(film);
     const ref = document.getElementById('watch');
     let filmToWatch = JSON.parse(localStorage.getItem('filmsWatched'));
     if (filmToWatch === null) {
@@ -122,7 +117,6 @@ export default function (root, ...rest) {
     }
     changeButtonWatched();
   }
-
   function queueChange(film) {
     const ref = document.getElementById('queue');
     let filmToQueue = JSON.parse(localStorage.getItem('filmsQueue'));
@@ -149,6 +143,5 @@ export default function (root, ...rest) {
     }
     changeButtonQueue();
   }
-
   fetchDetails(id);
 }

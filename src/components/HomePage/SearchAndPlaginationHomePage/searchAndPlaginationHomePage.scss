@@ -77,11 +77,11 @@
   color: $btn-color;
   cursor: pointer;
   background: none;
-  background-image: linear-gradient(
-    0deg,
-    rgb(240, 240, 240) 0%,
-    rgba(240, 240, 240, 0) 100%
-  );
+  background-image: linear-gradient(0deg,
+      rgb(240, 240, 240) 0%,
+      rgba(240, 240, 240, 0) 100%);
+
+
 }
 
 .pagination_page-number {
@@ -97,11 +97,9 @@
   line-height: 26px;
   color: $btn-color;
   text-align: center;
-  background-image: linear-gradient(
-    0deg,
-    rgb(240, 240, 240) 0%,
-    rgba(240, 240, 240, 0) 100%
-  );
+  background-image: linear-gradient(0deg,
+      rgb(240, 240, 240) 0%,
+      rgba(240, 240, 240, 0) 100%);
 }
 
 .invisible {
@@ -109,6 +107,7 @@
 }
 
 @media (min-width: 768px) {
+
   .homeSection,
   .searchBar,
   .pagination {
@@ -117,6 +116,7 @@
 }
 
 @media (min-width: 1024px) {
+
   .homeSection,
   .searchBar,
   .pagination {
