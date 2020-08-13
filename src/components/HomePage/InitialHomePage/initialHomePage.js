@@ -10,6 +10,7 @@ export default {
   renderFilms: [],
   pageNumber: 1,
   totalPages: 0,
+  inputValue: "",
 
   incrementPage() {
     this.pageNumber += 1;

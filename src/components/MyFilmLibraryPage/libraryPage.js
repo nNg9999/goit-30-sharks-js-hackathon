@@ -1,5 +1,7 @@
 import myFilmLibraryPageTemplate from './myFilmLibraryPage.hbs';
 import filmLibraryItemsTemplate from './filmLibraryItems.hbs';
+import videoTemplate from './video.hbs';
+import db from './db.json';
 
 import storage from '../../utils/storage';
 import './myFilmLibraryPage.scss';
@@ -9,14 +11,14 @@ export default function (root, ...rest) {
   const markup = myFilmLibraryPageTemplate();
   root.insertAdjacentHTML('beforeend', markup);
 
+
   const refs = {
-    userInput: document.querySelector('#name-input'),
     moviesListWatched: document.querySelector('#js-watched'),
     moviesListQueue: document.querySelector('#js-queue'),
     watched: document.querySelector('.watched'),
     queue: document.querySelector('.queue'),
-    moviesList: document.querySelector('.movie-list'),
   };
+
 
   // refs.moviesListItem.addEventListener('click', navigation.activeDetailsPage);
   function createLibraryCardFunc(fragment = '') {
@@ -33,6 +35,7 @@ export default function (root, ...rest) {
         refs.moviesListQueue.insertAdjacentHTML('beforeend', markup);
       });
     } else {
+      refs.moviesListWatched.innerHTML = '';
       const markup = createPlug('queue');
       refs.moviesListQueue.insertAdjacentHTML('beforeend', markup);
     }
@@ -48,13 +51,14 @@ export default function (root, ...rest) {
         refs.moviesListWatched.insertAdjacentHTML('beforeend', markup);
       });
     } else {
+      refs.moviesListQueue.innerHTML = '';
       const markup = createPlug('watched');
       refs.moviesListWatched.insertAdjacentHTML('beforeend', markup);
     }
   }
 
   function createPlug(text) {
-    return `<div>
+    return `<div class="plug">
       You do not have to ${text} movies to watch. Add them.
     </div>`;
   }
@@ -78,20 +82,14 @@ export default function (root, ...rest) {
   refs.queue.addEventListener('click', handlerClickQueue);
 
   function handlerClickWatched(e) {
-    // console.log("handlerClickWatched");
-    e.preventDefault();
-    const movieId = e.target.getAttribute('id');
-
-    clearListItems(movieId);
+    clearListItems();
     drawWatchedFilmList();
     showWatched();
-    // location.pathname = '/details';
+
   }
 
   function handlerClickQueue(e) {
-    e.preventDefault();
-    const movieId = e.target.getAttribute('id');
-    clearListItems(movieId);
+    clearListItems();
     drawQueueFilmList();
     hidenWatched();
   }
@@ -104,8 +102,16 @@ export default function (root, ...rest) {
     navigation.activeDetailsPage(movieId, true);
 
   }
+
   drawWatchedFilmList();
   showWatched();
+
+  function createVideo(db) {
+    const markup = videoTemplate(db);
+    document.querySelector('main').insertAdjacentHTML('beforeend', markup);
+  }
+
+  // createVideo(db);
 }
 
 
