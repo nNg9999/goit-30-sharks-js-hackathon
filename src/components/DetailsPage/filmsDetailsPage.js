@@ -93,7 +93,13 @@ export default function (root, ...rest) {
         document.getElementById('go-back').addEventListener('click', () => {
           root.innerHTML = '';
           history.back();
-        });
+        })
+          .catch(error => {
+            console.log(error);
+            notify.showError();
+          })
+          .finally(() => spinner.hide());
+        ;
       });
   }
 

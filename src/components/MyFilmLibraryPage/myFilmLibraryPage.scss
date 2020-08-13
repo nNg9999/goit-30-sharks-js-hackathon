@@ -1,4 +1,5 @@
 @import '../../sass/helpers/variables.scss';
+@import '../../sass//helpers/mixins.scss';
 
 .libraryBtn_container {
   width: 100%;
@@ -45,16 +46,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 320px; //удалить как станет в контейнер
+  width: 320px;
   padding-top: 12px;
-  margin: 0 auto;
+  // margin: 0 auto;
+
+  .plug {
+    padding: 0px 20px;
+  }
 
   &__item {
     position: relative;
     transition: all 300ms linear;
 
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.07);
     }
 
     @media (max-width: 767px) {
@@ -69,8 +74,8 @@
   }
 
   &__title {
-    font-size: 12px;
-    line-height: 14px;
+    font-size: $main-font-stack;
+    @include font-set(12px, 14px);
     font-weight: 700;
     position: absolute;
     color: rgb(240, 235, 235);
@@ -95,7 +100,7 @@
 
 @media (min-width: 768px) {
   .movie-list {
-    width: 768px; //удалить как станет в контейнер
+    width: 768px;
     justify-content: space-evenly;
     padding-top: 28px;
 
@@ -109,19 +114,18 @@
     }
 
     &__icon {
-      left: 310px;
+      left: 283px;
     }
 
     &__title {
-      font-size: 12px;
-      line-height: 14px;
+      @include font-set(12px, 14px);
     }
   }
 }
 
 @media (min-width: 1024px) {
   .movie-list {
-    width: 1024px; //удалить как станет в контейнер
+    width: 1024px;
     padding-top: 30px;
 
     &__item:not(:nth-last-child(-n + 2)) {
@@ -138,8 +142,7 @@
     }
 
     &__title {
-      font-size: 20px;
-      line-height: 23px;
+      @include font-set(20px, 23px);
       bottom: 20px;
     }
   }

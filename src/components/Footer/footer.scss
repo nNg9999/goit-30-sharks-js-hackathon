@@ -8,6 +8,9 @@
 }
 
 .footer__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
   font-family: $main-font-stack;
   color: $main-font-color;

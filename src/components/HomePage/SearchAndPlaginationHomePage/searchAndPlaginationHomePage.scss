@@ -39,6 +39,7 @@
 
 .serchInput {
   width: 222px;
+  padding-bottom: 5px;
   background-color: rgb(243, 246, 246);
   border: none;
   outline: none;
@@ -47,7 +48,8 @@
 .serchInput::placeholder {
   color: $main-font-color;
   font-family: $main-font-stack;
-  font-size: 15px;
+  font-size: 17px;
+  min-height: 20px;
 }
 
 .pagination {
@@ -104,6 +106,10 @@
 
 .invisible {
   display: none;
+}
+
+.non-active {
+  opacity: 0.4;
 }
 
 @media (min-width: 768px) {
