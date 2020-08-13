@@ -7,7 +7,9 @@ const noImage =
   'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg';
 
 const fetchShowDetails = showId => {
-  return fetch(`${baseURL}/movie/${showId}?api_key=${apiKey}&language=ru`).then(res => res.json());
+  return fetch(
+    `${baseURL}/movie/${showId}?api_key=${apiKey}&language=ru`,
+  ).then(res => res.json());
 };
 
 const fetchShowCast = showId => {
@@ -17,23 +19,34 @@ const fetchShowCast = showId => {
 };
 
 const fetchShowReviews = showId => {
-  return fetch(`${baseURL}/movie/${showId}/reviews?api_key=${apiKey}&language=en-US&page=1`)
+  return fetch(
+    `${baseURL}/movie/${showId}/reviews?api_key=${apiKey}&language=en-US&page=1`,
+  )
     .then(res => res.json())
     .then(res => res.data);
-
 };
 
 const fetchShowWithQuery = (searchQuery, pageNumber) => {
-  return fetch(`${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=${pageNumber}&include_adult=false`)
+  return fetch(
+    `${baseURL}/search/movie?api_key=${apiKey}&language=en-US&query=${searchQuery}&page=${pageNumber}&include_adult=false`,
+  )
     .then(res => res.json())
     .then(data => data);
 };
 
-const fetchShowWithTrending = (pageNumber) => {
-  return fetch(`${baseURL}/trending/movie/week?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false`)
-    .then(res => res.json());
-}
+const fetchShowWithTrending = pageNumber => {
+  return fetch(
+    `${baseURL}/trending/movie/week?api_key=${apiKey}&language=en-US&page=${pageNumber}&include_adult=false`,
+  ).then(res => res.json());
+};
 
+const fetchSimilarShows = showId => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${showId}/similar?api_key=${apiKey}&language=en-US&page=1`,
+  )
+    .then(res => res.json())
+    .then(data => data.results);
+};
 
 export default {
   pathImage,
@@ -44,4 +57,5 @@ export default {
   fetchShowWithTrending,
   fetchShowCast,
   fetchShowReviews,
+  fetchSimilarShows,
 };

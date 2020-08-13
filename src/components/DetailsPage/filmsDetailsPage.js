@@ -5,11 +5,22 @@ import './detailsPage.scss';
 import detailPageTemplate from './detailsPage.hbs';
 import storage from '../../utils/storage';
 
+import similarMoviesTemplate from './movieTemplate.hbs';
+import noPoster from '../../images/noPoster.jpg';
+
 import initialHomePage from '../HomePage/InitialHomePage/initialHomePage';
 
+import Glide from '@glidejs/glide';
+import '../../../node_modules/@glidejs/glide/dist/css/glide.core.min.css';
+import '../../../node_modules/@glidejs/glide/dist/css/glide.theme.min.css';
+
+// import Splide from '@splidejs/splide';
+// import '../../../node_modules/@splidejs/splide/dist/css/splide.min.css';
+// import '../../../node_modules/@splidejs/splide/dist/css/themes/splide-sea-green.min.css';
 
 export default function (root, ...rest) {
   const id = Number(storage.get('selectFilm'));
+
   function dataWithCutDate(data) {
     return {
       ...data,
@@ -85,11 +96,17 @@ export default function (root, ...rest) {
         });
       });
   }
+
   function renderDetails(details) {
     spinner.hide();
+
     let markup = '';
     markup = detailPageTemplate(details);
     root.insertAdjacentHTML('beforeend', markup);
+    fetchSimilarFilms(id);
+    new Glide('#glide', {
+      perView: 6,
+    }).mount();
   }
   function watchChange(film) {
     const ref = document.getElementById('watch');
@@ -144,4 +161,31 @@ export default function (root, ...rest) {
     changeButtonQueue();
   }
   fetchDetails(id);
+
+  function fetchSimilarFilms(id) {
+    APIservice.fetchSimilarShows(id).then(movies => createMovieMarkup(movies));
+  }
+
+  function createMovieMarkup(movies) {
+    const markup = movies
+      .map(movie => similarMoviesTemplate(createFilmObjectForTemplate(movie)))
+      .join(' ');
+    const list = document.querySelector('.glide__slides');
+    list.insertAdjacentHTML('beforeend', markup);
+  }
+
+  function createFilmObjectForTemplate(film) {
+    const pathToPoster = film.backdrop_path
+      ? `${APIservice.pathImage}${film.backdrop_path}`
+      : noPoster;
+    const title = film.title ? film.title : film.name;
+    const id = film.id;
+    const year = film.release_date ? `(${film.release_date.slice(0, 4)})` : '';
+    return {
+      pathToPoster,
+      title,
+      id,
+      year,
+    };
+  }
 }
