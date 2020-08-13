@@ -1,0 +1,32 @@
+%button {
+  display: block;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: $btn-color;
+  background: $main-bg-color;
+}
+
+%link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+%background {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+%pseudo {
+  content: '';
+  display: inline-block;
+}
+
+%pseudo-before {
+  content: '\005B';
+}
+
+%pseudo-after {
+  content: '\005D';
+}

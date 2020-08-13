@@ -1,0 +1,48 @@
+@import '../../sass/helpers/variables.scss';
+
+.footer {
+  min-height: 86px;
+  padding-top: 30px;
+  background-color: $main-bg-color;
+  position: relative;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-family: $main-font-stack;
+  color: $main-font-color;
+  line-height: 1;
+  text-align: center;
+}
+
+.footer__btn {
+  position: fixed;
+  bottom: 20px;
+  right: 16px;
+  background-color: $main-bg-color;
+  background-image: url(../../images/up.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.55);
+  width: 50px;
+  height: 50px;
+  display: block;
+  text-decoration: none;
+  border-radius: 35px;
+  display: none;
+  opacity: 0.7;
+}
+
+.footer__btn:hover {
+  opacity: 1;
+  cursor: pointer;
+
+}
+
+.footer__btn-show {
+  display: block;
+}

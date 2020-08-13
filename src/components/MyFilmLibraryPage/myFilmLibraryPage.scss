@@ -1,0 +1,149 @@
+@import '../../sass/helpers/variables.scss';
+@import '../../sass//helpers/mixins.scss';
+
+.libraryBtn_container {
+  width: 100%;
+  min-width: 320px;
+  padding-bottom: 14px;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.2);
+}
+
+.libraryBtn {
+  margin: 0 auto;
+  display: flex;
+  width: 280px;
+  height: 40px;
+
+}
+
+.libraryBtn_items {
+  outline: none;
+  border: none;
+  margin: 0 auto;
+  width: 140px;
+  text-align: center;
+  font-family: $main-font-stack;
+  font-size: 16px;
+  color: $main-font-color;
+  padding-top: 11px;
+  position: relative;
+  border-bottom: 2px solid rgb(156, 153, 165);
+
+  &:hover &::after {
+    visibility: hidden;
+  }
+}
+
+.active {
+  background-color: $main-bg-color;
+  border: none;
+  color: #fff;
+}
+
+
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 320px;
+  padding-top: 12px;
+  // margin: 0 auto;
+
+  .plug {
+    padding: 0px 20px;
+  }
+
+  &__item {
+    position: relative;
+    transition: all 300ms linear;
+
+    &:hover {
+      transform: scale(1.07);
+    }
+
+    @media (max-width: 767px) {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__poster {
+    width: 300px;
+    height: 160px;
+    border-radius: 10px;
+  }
+
+  &__title {
+    font-size: $main-font-stack;
+    @include font-set(12px, 14px);
+    font-weight: 700;
+    position: absolute;
+    color: rgb(240, 235, 235);
+    bottom: 8px;
+    left: 14px;
+    text-shadow: 1px 1px 2px black;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 5px;
+    left: 262px;
+    width: 32px;
+    height: 16px;
+    color: $main-font-color;
+    background-color: white;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .movie-list {
+    width: 768px;
+    justify-content: space-evenly;
+    padding-top: 28px;
+
+    &__item {
+      margin-bottom: 20px;
+    }
+
+    &__poster {
+      width: 348px;
+      height: 176px;
+    }
+
+    &__icon {
+      left: 283px;
+    }
+
+    &__title {
+      @include font-set(12px, 14px);
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .movie-list {
+    width: 1024px;
+    padding-top: 30px;
+
+    &__item:not(:nth-last-child(-n + 2)) {
+      margin-bottom: 26px;
+    }
+
+    &__poster {
+      width: 466px;
+      height: 246px;
+    }
+
+    &__icon {
+      left: 428px;
+    }
+
+    &__title {
+      @include font-set(20px, 23px);
+      bottom: 20px;
+    }
+  }
+}
