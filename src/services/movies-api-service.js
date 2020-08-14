@@ -48,6 +48,12 @@ const fetchSimilarShows = showId => {
     .then(data => data.results);
 };
 
+const fetchShowVideos = showId => {
+  return fetch(
+    `${baseURL}/movie/${showId}/videos?api_key=${apiKey}&language=en-US`,
+  ).then(res => res.json());
+};
+
 export default {
   pathImage,
   noPoster,
@@ -58,4 +64,5 @@ export default {
   fetchShowCast,
   fetchShowReviews,
   fetchSimilarShows,
+  fetchShowVideos,
 };

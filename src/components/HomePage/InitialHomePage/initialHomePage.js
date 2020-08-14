@@ -82,12 +82,14 @@ export default {
       : noPoster;
     const title = film.title ? film.title : film.name;
     const id = film.id;
+    const vote = film.vote_average;
     const year = film.release_date ? `(${film.release_date.slice(0, 4)})` : '';
     return {
       pathToPoster,
       title,
       id,
       year,
+      vote,
     };
   },
 

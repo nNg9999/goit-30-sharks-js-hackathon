@@ -6,6 +6,7 @@ import detailPageTemplate from './detailsPage.hbs';
 import storage from '../../utils/storage';
 
 import similarMoviesTemplate from './movieTemplate.hbs';
+import trailerTemplate from './trailer.hbs';
 import noPoster from '../../images/noPoster.jpg';
 
 import initialHomePage from '../HomePage/InitialHomePage/initialHomePage';
@@ -13,10 +14,6 @@ import initialHomePage from '../HomePage/InitialHomePage/initialHomePage';
 import Glide from '@glidejs/glide';
 import '../../../node_modules/@glidejs/glide/dist/css/glide.core.min.css';
 import '../../../node_modules/@glidejs/glide/dist/css/glide.theme.min.css';
-
-// import Splide from '@splidejs/splide';
-// import '../../../node_modules/@splidejs/splide/dist/css/splide.min.css';
-// import '../../../node_modules/@splidejs/splide/dist/css/themes/splide-sea-green.min.css';
 
 export default function (root, ...rest) {
   const id = Number(storage.get('selectFilm'));
@@ -94,6 +91,8 @@ export default function (root, ...rest) {
           root.innerHTML = '';
           history.back();
         })
+        fetchTrailer(id);
+
       })
       .catch(error => {
         console.log(error);
@@ -167,6 +166,8 @@ export default function (root, ...rest) {
   }
   fetchDetails(id);
 
+
+
   function fetchSimilarFilms(id) {
     APIservice.fetchSimilarShows(id).then(movies => {
       movies.length > 0 ? createMovieMarkup(movies)
@@ -181,6 +182,7 @@ export default function (root, ...rest) {
     const list = document.querySelector('.glide__slides');
     list.insertAdjacentHTML('beforeend', markup);
   }
+
   function createMovieDefault() {
     const markup = `<p>No similar movies</p>`;
     const list = document.querySelector('.glide__slides');
@@ -201,4 +203,22 @@ export default function (root, ...rest) {
       year,
     };
   }
+
+  function fetchTrailer(id) {
+    spinner.show();
+    APIservice.fetchShowVideos(id)
+      .then(({ results }) => renderTrailer(results[0]))
+      .catch(error => {
+        console.log(error);
+        notify.showError();
+      })
+      .finally(() => spinner.hide());
+  }
+
+  function renderTrailer(obj) {
+    const markup = trailerTemplate(obj);
+    const filmDetails = document.querySelector('#js-filmDetails__right');
+    filmDetails.insertAdjacentHTML('beforeend', markup);
+  }
+
 }

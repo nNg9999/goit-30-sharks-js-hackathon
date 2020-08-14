@@ -31,6 +31,11 @@ export default function (root) {
     initialHomePage.resetPage();
     initialHomePage.makeInvisible();
     refs.nextBtn.addEventListener('click', nextPageHandler);
+
+    if (!refs.prevBtn.classList.contains('non-active')) {
+      refs.prevBtn.classList.add('non-active');
+    };
+
     resetPageNumber();
     clearGallery();
     selectFetch(initialHomePage.inputValue);
@@ -77,12 +82,13 @@ export default function (root) {
   }
   function fetchMovies(query) {
     const { pageNumber } = initialHomePage;
-
     spinner.show();
     api
       .fetchShowWithQuery(query, pageNumber)
       .then(({ results, total_pages }) => {
-
+        if (total_pages > 1 && refs.nextBtn.classList.contains('non-active')) {
+          refs.nextBtn.classList.remove('non-active');
+        }
         if (total_pages === initialHomePage.pageNumber) {
           notify.showInfo('This is the last page');
           refs.nextBtn.classList.add('non-active');
@@ -93,6 +99,7 @@ export default function (root) {
       .catch(error => notify.showError(error))
       .finally(() => spinner.hide());
   }
+
   function resetPageNumber() {
     const { pageNumber } = initialHomePage;
     refs.pageNumber.textContent = pageNumber;

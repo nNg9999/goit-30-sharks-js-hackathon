@@ -1,17 +1,9 @@
 <div class="container">
   <div class="filmDetails__wrapper">
     <div class="filmDetails__poster">
-      {{!-- <picture>
-      <source media="(max-width: 767px)" srcset='https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}'
-        width='274' />
-      <source media="(min-width: 768px) and (max-width: 1023px)"
-        srcset='https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}' width='357' />
-      <source media="(min-width: 1024px)" srcset='https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}'
-        width='1624' /> --}}
       <img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}' alt="poster" />
-      {{!-- </picture> --}}
     </div>
-    <div class="filmDetails__right">
+    <div class="filmDetails__right" id="js-filmDetails__right">
       <div class="filmDetails__main">
         <h2>{{title}} ({{release_date}})</h2>
         <table>
@@ -46,8 +38,8 @@
         <div class="filmDetails__button filmDetails__button-queue" data-value="add" id="queue">
           Add to queue
         </div>
+        <button class="filmDetails__go-back" id="go-back">Go back</button>
       </div>
-      <button class="filmDetails__go-back" id="go-back">Go back</button>
     </div>
   </div>
   <h3>Similar movies</h3>
@@ -58,8 +50,6 @@
         </ul>
       </div>
       <div class="glide__arrows" data-glide-el="controls">
-        {{!-- <button class="glide__arrow glide__arrow--left" data-glide-dir="<">        </button>
-        <button class="glide__arrow glide__arrow--right" data-glide-dir=">"> --}}
         <button class=" glide__arrow glide__arrow--left btn--left " data-glide-dir="<"> </button>
         <button class="glide__arrow glide__arrow--right btn--right" data-glide-dir=">"></button>
         </button>
