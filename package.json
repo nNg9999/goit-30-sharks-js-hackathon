@@ -19,7 +19,6 @@
   "bugs": {
     "url": "https://github.com/nNg9999/goit-30-sharks-js-hackathon/issues"
   },
-
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -49,6 +48,7 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.4.1",
     "@pnotify/core": "^5.1.2",
     "core-js": "^3.6.4",
     "handlebars": "^4.7.6",

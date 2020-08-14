@@ -1,12 +1,6 @@
 @import '../../sass/helpers/variables.scss';
 @import '../../sass//helpers/mixins.scss';
 
-.libraryBtn_container {
-  width: 100%;
-  min-width: 320px;
-  padding-bottom: 14px;
-  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.2);
-}
 
 .libraryBtn {
   margin: 0 auto;
@@ -14,23 +8,29 @@
   width: 280px;
   height: 40px;
 
-}
+  &_container {
+    width: 100%;
+    min-width: 320px;
+    padding-bottom: 14px;
+    box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.2);
+  }
 
-.libraryBtn_items {
-  outline: none;
-  border: none;
-  margin: 0 auto;
-  width: 140px;
-  text-align: center;
-  font-family: $main-font-stack;
-  font-size: 16px;
-  color: $main-font-color;
-  padding-top: 11px;
-  position: relative;
-  border-bottom: 2px solid rgb(156, 153, 165);
+  &_items {
+    outline: none;
+    border: none;
+    margin: 0 auto;
+    width: 140px;
+    text-align: center;
+    font-family: $main-font-stack;
+    font-size: 16px;
+    color: $main-font-color;
+    padding-top: 11px;
+    position: relative;
+    border-bottom: 2px solid rgb(156, 153, 165);
 
-  &:hover &::after {
-    visibility: hidden;
+    &:hover &::after {
+      visibility: hidden;
+    }
   }
 }
 
@@ -40,7 +40,9 @@
   color: #fff;
 }
 
-
+.movie-container {
+  margin: 0 auto;
+}
 
 .movie-list {
   display: flex;
@@ -48,7 +50,7 @@
   justify-content: center;
   width: 320px;
   padding-top: 12px;
-  // margin: 0 auto;
+  margin: 0 auto;
 
   .plug {
     padding: 0px 20px;

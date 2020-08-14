@@ -94,13 +94,12 @@ export default function (root, ...rest) {
           root.innerHTML = '';
           history.back();
         })
-          .catch(error => {
-            console.log(error);
-            notify.showError();
-          })
-          .finally(() => spinner.hide());
-        ;
-      });
+      })
+      .catch(error => {
+        console.log(error);
+        notify.showError();
+      })
+      .finally(() => spinner.hide());
   }
 
   function renderDetails(details) {
@@ -169,13 +168,21 @@ export default function (root, ...rest) {
   fetchDetails(id);
 
   function fetchSimilarFilms(id) {
-    APIservice.fetchSimilarShows(id).then(movies => createMovieMarkup(movies));
+    APIservice.fetchSimilarShows(id).then(movies => {
+      movies.length > 0 ? createMovieMarkup(movies)
+        : createMovieDefault();
+    });
   }
 
   function createMovieMarkup(movies) {
     const markup = movies
       .map(movie => similarMoviesTemplate(createFilmObjectForTemplate(movie)))
       .join(' ');
+    const list = document.querySelector('.glide__slides');
+    list.insertAdjacentHTML('beforeend', markup);
+  }
+  function createMovieDefault() {
+    const markup = `<p>No similar movies</p>`;
     const list = document.querySelector('.glide__slides');
     list.insertAdjacentHTML('beforeend', markup);
   }

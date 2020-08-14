@@ -139,7 +139,32 @@ tr:nth-child(odd) {
 }
 
 .glide__arrow {
-  color: black;
+  border-radius: 50%;
+  background-color: transparent;
+
+}
+
+.btn--left {
+  position: absolute;
+  top: 40%;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../images/icons/arrow-left.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.btn--right {
+  position: absolute;
+  top: 40%;
+  width: 30px;
+  height: 30px;
+
+  background-image: url('../../images/icons/arrow-right.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .similar_movies__poster {
@@ -226,6 +251,7 @@ tr:nth-child(odd) {
     border-left: #ffffff solid 3px;
     margin-top: 0px;
   }
+
   .glide-container {
     max-width: 1024px;
   }

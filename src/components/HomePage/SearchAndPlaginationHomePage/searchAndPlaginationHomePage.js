@@ -8,7 +8,6 @@ import './searchAndPlaginationHomePage.scss';
 import icon from '../../../images/icon.png';
 const debounce = require('lodash.debounce');
 
-// let locationSearch = '';
 
 export default function (root) {
 
@@ -36,11 +35,10 @@ export default function (root) {
     clearGallery();
     selectFetch(initialHomePage.inputValue);
 
-    // e.target.value = '';
+    e.target.value = '';
   }
   function nextPageHandler() {
     initialHomePage.incrementPage();
-    console.log(initialHomePage.pageNumber);
     if (refs.prevBtn.classList.contains('non-active')) {
       refs.prevBtn.classList.remove('non-active');
     }
@@ -48,9 +46,12 @@ export default function (root) {
     initialHomePage.makeInvisible();
     clearGallery();
     selectFetch(initialHomePage.inputValue);
-    console.log("initialHomePage.inputValue", initialHomePage.inputValue);
-    console.log("initialHomePage.pageNumber", initialHomePage.pageNumber);
-    location.search = `?query=${initialHomePage.inputValue}&page=${initialHomePage.pageNumber}`;
+    // const history = window.location.search = (`?query=${initialHomePage.inputValue}&page=${initialHomePage.pageNumber}`);
+    // const history = new URLSearchParams(location.href).set("page", `${initialHomePage.pageNumber}`);
+    // console.log(history);
+    // console.log("initialHomePage.inputValue", initialHomePage.inputValue);
+    // console.log("initialHomePage.pageNumber", initialHomePage.pageNumber);
+    // location.search = `?query=${initialHomePage.inputValue}&page=${initialHomePage.pageNumber}`;
     // initialHomePage.inputValue ? location.search = `?query=${initialHomePage.inputValue}&page=${initialHomePage.pageNumber}`
     // : location.search = `?page=${initialHomePage.pageNumber}`;
   }
@@ -77,8 +78,6 @@ export default function (root) {
   function fetchMovies(query) {
     const { pageNumber } = initialHomePage;
 
-    // locationSearch = `query=${query}&page=${pageNumber}`;
-
     spinner.show();
     api
       .fetchShowWithQuery(query, pageNumber)
@@ -102,5 +101,5 @@ export default function (root) {
     refs.gallery.innerHTML = '';
   }
 
-  // location.search = locationSearch;
+
 }

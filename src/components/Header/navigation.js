@@ -34,7 +34,6 @@ export default {
 
     location.pathname = pathPage.details;
     storage.save('selectFilm', movieId);
-    console.log(movieId, itsLibraryFilm);
 
     refs.libraryLink.addEventListener('click', activeLibraryPage);
   },
