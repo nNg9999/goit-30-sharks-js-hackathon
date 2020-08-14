@@ -11,7 +11,7 @@
       <img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{poster_path}}' alt="poster" />
       {{!-- </picture> --}}
     </div>
-    <div class="filmDetails__right">
+    <div class="filmDetails__right" id='js-filmDetails__right'>
       <div class="filmDetails__main">
         <h2>{{title}} ({{release_date}})</h2>
         <table>
@@ -46,8 +46,8 @@
         <div class="filmDetails__button filmDetails__button-queue" data-value="add" id="queue">
           Add to queue
         </div>
+        <button class="filmDetails__go-home" id="go-home">Go home</button>
       </div>
-      <button class="filmDetails__go-home" id="go-home">Go home</button>
     </div>
   </div>
 </div>

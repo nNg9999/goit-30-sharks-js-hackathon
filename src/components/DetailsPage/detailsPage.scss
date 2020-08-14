@@ -63,15 +63,15 @@ tr:nth-child(odd) {
 .filmDetails__buttons {
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  margin-bottom: 14px;
 }
 
 .filmDetails__main {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .filmDetails__about {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .filmDetails__button {
@@ -85,7 +85,12 @@ tr:nth-child(odd) {
   background-repeat: no-repeat;
   background-size: 20px 20px;
   background-position: left;
+  margin-right: 4px;
   cursor: pointer;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 10px;
+  }
 
   &-watched {
     background-image: url('../../images/icons/videocam.svg');
@@ -118,10 +123,14 @@ tr:nth-child(odd) {
     background-image: url('../../images/icons/calendar-added.svg');
     background-color: $main-bg-color;
     color: #ffffff;
-    margin-top: 3px;
+    // margin-top: 3px;
   }
 }
 
+.trailer {
+  width: 276px;
+  height: 155px;
+}
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .container {
     width: 718px;
@@ -157,6 +166,10 @@ tr:nth-child(odd) {
   .deleteStyle-queue {
     border-left: #ffffff solid 3px;
     margin-top: 0px;
+  }
+  .trailer {
+    width: 348px;
+    height: 172px;
   }
 }
 
@@ -197,5 +210,9 @@ tr:nth-child(odd) {
   .deleteStyle-queue {
     border-left: #ffffff solid 3px;
     margin-top: 0px;
+  }
+  .trailer {
+    width: 452px;
+    height: 255px;
   }
 }

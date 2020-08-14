@@ -4,6 +4,7 @@ import spinner from '../../utils/spinner';
 import './detailsPage.scss';
 
 import detailPageTemplate from './detailsPage.hbs';
+import trailerTemplate from './trailer.hbs';
 import storage from '../../utils/storage';
 
 export default function (root, ...rest) {
@@ -71,21 +72,45 @@ export default function (root, ...rest) {
 
   function fetchDetails(id) {
     spinner.show();
-    APIservice.fetchShowDetails(id).then(data => {
-      renderDetails(dataWithCutDate(data));
-      monitorButtonStatusText(id);
-      console.log(data);
-      document
-        .getElementById('watch')
-        .addEventListener('click', () => watchChange(dataWithCutDate(data)));
-      document
-        .getElementById('queue')
-        .addEventListener('click', () => queueChange(dataWithCutDate(data)));
-      document.getElementById('go-home').addEventListener('click', () => {
-        root.innerHTML = '';
-        location.pathname = '/';
-      });
-    });
+    APIservice.fetchShowDetails(id)
+      .then(data => {
+        renderDetails(dataWithCutDate(data));
+        monitorButtonStatusText(id);
+
+        document
+          .getElementById('watch')
+          .addEventListener('click', () => watchChange(dataWithCutDate(data)));
+        document
+          .getElementById('queue')
+          .addEventListener('click', () => queueChange(dataWithCutDate(data)));
+        document.getElementById('go-home').addEventListener('click', () => {
+          root.innerHTML = '';
+          location.pathname = '/';
+        });
+        fetchTrailer(id);
+      })
+      .catch(error => {
+        console.log(error);
+        notify.showError();
+      })
+      .finally(() => spinner.hide());
+  }
+
+  function fetchTrailer(id) {
+    spinner.show();
+    APIservice.fetchShowVideos(id)
+      .then(({ results }) => renderTrailer(results[0]))
+      .catch(error => {
+        console.log(error);
+        notify.showError();
+      })
+      .finally(() => spinner.hide());
+  }
+
+  function renderTrailer(obj) {
+    const markup = trailerTemplate(obj);
+    const filmDetails = document.querySelector('#js-filmDetails__right');
+    filmDetails.insertAdjacentHTML('beforeend', markup);
   }
 
   function renderDetails(details) {
