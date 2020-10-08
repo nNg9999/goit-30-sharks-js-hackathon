@@ -94,6 +94,8 @@ export default {
   clickHandler(e) {
     const clickedFilm = e.target;
     const clickedFilmId = clickedFilm.dataset.id;
-    navigation.activeDetailsPage(clickedFilmId, false);
+    if (clickedFilmId) {
+      navigation.activeDetailsPage(clickedFilmId, false);
+    }
   },
 };
