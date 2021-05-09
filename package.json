@@ -51,7 +51,7 @@
     "@glidejs/glide": "^3.4.1",
     "@pnotify/core": "^5.1.2",
     "core-js": "^3.6.4",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "lodash.debounce": "^4.0.8",
     "node-sass": "^4.14.1",
     "toastr": "^2.1.4"
